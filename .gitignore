@@ -1,0 +1,4 @@
+
+*.csv
+.ipynb_checkpoints/LendingClub-checkpoint.ipynb
+*.zip
