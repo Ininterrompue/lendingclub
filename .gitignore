@@ -1,4 +1,5 @@
 
 *.csv
-.ipynb_checkpoints/LendingClub-checkpoint.ipynb
 *.zip
+.ipynb_checkpoints/PortfolioOptimization-checkpoint.ipynb
+.ipynb_checkpoints/BadLoanPrediction-checkpoint.ipynb
