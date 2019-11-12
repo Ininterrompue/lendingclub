@@ -9,16 +9,17 @@ We tackle two problems of interest.
 
 Loans on LendingClub are rated based on their interest rates, though it is expected that a higher percentage of these "subprime" loans with higher rates eventually default and/or are charged-off, resulting in a loss for the investor. Hence a balance must be made between risk and reward.
 
-### Bad loans
+## Bad loans
 
 The entire dataset shows us that the default rate is about 12%, so a model picking loans at random will be expected to have this miss rate (the base case).
 
-The data preprocessing is conducted in detail in the BadLoanPrediction.ipynb notebook. The most important factors to keep in consideration are summarized as follows:
+The data preprocessing is conducted in detail in the `BadLoanPrediction.ipynb` notebook. The most important factors to keep in consideration are summarized as follows:
 * Drop features not known to the investor at the time of offering. This prevents us from "cheating" with features like the last payment date.
+* Deal with the imbalanced data. Since the dataset has about 2.2 million entries, we try random undersampling to resample with a 50/50 ratio of good and bad loans.
 * Properly treat categorical features. This means that we elected to interpolate the subgrades so that they are consistent with the ordinally encoded grades feature. To avoid dimensional blowup, the addresses were one-hot encoded into the four US Census designated regions.
 * A first attempt at modeling will drop all entries that have any missing data. Employment length is the feature with the most amount of missing data (6.5%); all others have less than 0.1% missing.
 
-We attempted to construct three models to predict bad loans. As this is a binary classification problem, the first model to try is logistic regression. We also used random forests and deep neural networks. As we want to minimize the amount of bad loans selected, the recall and miss rates will be more important to track than accuracy and precision. The performance for all three models is listed below.
+We constructed three models to predict bad loans. As this is a binary classification, the first model to try is logistic regression. We also used the more sophisticated random forests and deep neural networks. As we want to minimize the amount of bad loans selected, the recall and miss rates will be more important to track than accuracy and precision. The miss rate, taking into account true positives of label=0, will not be fully inversely related to the recall rate. Notice that the logistic regression is already performing twice as well as picking loans at random.
 
 | Model | Recall (%) | Miss rate (%) | 
 | ---- | ---- | ---- |
