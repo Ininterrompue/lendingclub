@@ -11,7 +11,17 @@ Loans on LendingClub are rated based on their interest rates, though it is expec
 
 ## Bad loans
 
-The entire dataset shows us that the default rate is about 12%, so a model picking loans at random will be expected to have this miss rate (the base case).
+The entire dataset shows us that the default rate is about 12%, so a model picking loans at random will be expected to have this miss rate (the base case). By loan grade, the default rates steadily increase, as expected. Keep in mind that LendingClub no longer offers loans of grades E, F, and G.
+
+| Loan grade | Percent of total loans (%) | Default rate (%) |
+| ---- | ---- | ---- |
+| A | 19.15 | 3.3 |
+| B | 29.35 | 7.9 |
+| C | 28.75 | 13.2 |
+| D | 14.35 | 18.9 |
+| E | 6.00 | 26.7 |
+| F | 1.85 | 34.9 |
+| G | 0.54 | 38.1 |
 
 The data preprocessing is conducted in detail in the `BadLoanPrediction.ipynb` notebook. The most important factors to keep in consideration are summarized as follows:
 * Drop features not known to the investor at the time of offering. This prevents us from "cheating" with features like the last payment date.
