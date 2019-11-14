@@ -35,6 +35,6 @@ We constructed three models to predict bad loans. As this is a binary classifica
 | ---- | ---- | ---- |
 | Logistic Regression | 66.2 | 6.1 |
 | Random Forest Classifier | 70.3 | 5.8 |
-| 6-layer 48-16-64-64-16-1 | 76.1 | 4.9 |
+| 6-layer 48-16-64-128-16-1 | 77.5 | 4.8 |
 
 The feature importance visualization as extracted from the random forest confirms that the interest rate and loan subgrade are most important, in addition to DTI, revolving balance/utilization, and annual income.
