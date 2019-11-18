@@ -29,12 +29,18 @@ The data preprocessing is conducted in detail in the `BadLoanPrediction.ipynb` n
 * Properly treat categorical features. This means that we elected to interpolate the subgrades so that they are consistent with the ordinally encoded grades feature. To avoid dimensional blowup, the addresses were one-hot encoded into the four US Census designated regions.
 * Deal with missing data. Employment length is the feature with the most amount of missing data (6.5%); all others have less than 0.1% missing. We reason that missing employment length data is more likely than not due to borrowers with no significant employment history. The others can reasonably be imputed using their medians.
 
+Feature engineering is also important. We created several new features listed below:
+1. FICO average, the arithmetic average of the two FICO scores
+2. Credit maturity, the difference between the issue date and earliest credit line
+3. Monthly income to installment (MITI) ratio, which gauges how much of the borrower's monthly income is used to pay back the loan
+4. Total minus open accounts, the difference between the number of total accounts and open accounts
+
 We constructed three models to predict bad loans. As this is a binary classification, the first model to try is logistic regression. We also used the more sophisticated random forests and deep neural networks. As we want to minimize the amount of bad loans selected, the recall and miss rates will be more important to track than accuracy and precision. The miss rate, taking into account true positives of label=0, will not be fully inversely related to the recall rate. Notice that the logistic regression is already performing twice as well as picking loans at random.
 
 | Model | Recall (%) | Miss rate (%) | 
 | ---- | ---- | ---- |
-| Logistic Regression | 66.1 | 6.1 |
-| Random Forest Classifier | 70.3 | 5.8 |
-| 6-layer 48-16-64-128-16-1 | 79.3 | 4.5 |
+| Logistic Regression | 66.5 | 6.1 |
+| Random Forest Classifier | 70.7 | 5.7 |
+| 6-layer 49-16-64-128-16-1 | 77.3 | 4.8 |
 
-The feature importance visualization as extracted from the random forest confirms that the interest rate and loan subgrade are most important, in addition to DTI, revolving balance/utilization, and annual income.
+The feature importance visualization as extracted from the random forest confirms that the interest rate and loan subgrade are most important, in addition to DTI, revolving balance/utilization, and annual income. In addition, two engineered features, the MITI ratio and credit maturity, are also among the most important.
